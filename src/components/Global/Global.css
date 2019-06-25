@@ -1,0 +1,8 @@
+.globalHeader {
+  color: white;
+  background-color: black;
+  height: 4rem;
+  position: relative;
+  margin: auto;
+  padding-left: 2rem;
+}
