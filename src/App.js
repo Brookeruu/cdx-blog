@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { Switch, Route, withRoute } from 'react-router-dom';
 import GlobalHeader from './components/Global/GlobalHeader.jsx';
 import BlogList from './components/Blog/BlogList.jsx';
+import firebase from './firebaseConfig';
 
 
 
@@ -16,6 +17,8 @@ class App extends React.Component {
     }
   }
 render(){
+  // const firebase = firebase.database();
+  // console.log("firebase",firebase)
   return(
   <React.Fragment>
     <Helmet>
