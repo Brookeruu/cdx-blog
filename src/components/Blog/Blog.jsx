@@ -5,7 +5,7 @@ import Card from '../Card/index.jsx';
 const Blog = props => {
 
   useEffect(() => {
-    console.log("working useEffect")
+    // console.log("working useEffect")
     //do something here; can use blogList, is like componentDidMount/componentDidUpdate/
     //there we'd probably pull stored blogs from server ??
   });
