@@ -18,6 +18,8 @@ class GlobalHeader extends React.Component {
                     color: 'white',
                     height: '4rem',
                     position: 'relative',
+                    margin: 'auto',
+                    paddingLeft: '2rem',
                     display: 'flex',
                     alignItems: 'center'}}
         >
