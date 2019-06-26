@@ -38,7 +38,7 @@ export class NewBlog extends React.Component {
 
 
   render(){
-    console.log("statet",this.state)
+  
     return(
       <React.Fragment>
         <form onSubmit={this.handleSubmit}>

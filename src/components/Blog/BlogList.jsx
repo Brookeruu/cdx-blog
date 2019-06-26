@@ -1,6 +1,7 @@
-import React from 'react';
+import firebase from '../../firebaseConfig'; 
 import Blog from './Blog.jsx'
 import NewBlog from './BlogNew.jsx';
+import React from 'react';
 
  let blogs = [
     {
@@ -13,11 +14,12 @@ import NewBlog from './BlogNew.jsx';
     },
   ]
 
+
 const BlogList = props => {
 
   return(
     <React.Fragment>
-      <Blog blogs={blogs} />
+      <Blog />
       <NewBlog />
     </React.Fragment>
   )
