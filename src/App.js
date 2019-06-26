@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Switch, Route, withRoute } from 'react-router-dom';
 import GlobalHeader from './components/Global/GlobalHeader.jsx';
-import Blog from './components/Blog.jsx';
+import BlogList from './components/Blog/BlogList.jsx';
 
 
 
@@ -23,7 +23,7 @@ render(){
         <meta name="description" content="blogs" />
     </Helmet>
     <GlobalHeader />
-    <Blog />
+    <BlogList />
 
   
   </React.Fragment>
