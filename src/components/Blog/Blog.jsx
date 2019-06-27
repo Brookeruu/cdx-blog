@@ -11,22 +11,13 @@ export class Blog extends React.Component {
     }
   }
 
-    // let newPetState;
-    // let userPets = firebase.database().ref('pets/' + this.state.userId);
-    // userPets.on('value', (snap) => {
-    //   newPetState = Object.assign({}, snap.val());
-    //   this.setState({ pets: newPetState });
-    //   this.sendPetList();
-
   getData(){
     let newList;
     let ref = firebase.database().ref('blog/')
     ref.on('value', (snap) => {
         newList = Object.assign({}, snap.val());
         this.setState({list: newList})
-        console.log("newList",newList)
       });
-    console.log(this.state.list)
   }
 
   componentDidMount(){

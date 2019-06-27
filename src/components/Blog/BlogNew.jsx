@@ -1,6 +1,7 @@
 import firebase from '../../firebaseConfig';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import './index.css';
 
 export class NewBlog extends React.Component {
   constructor(props){
@@ -8,7 +9,7 @@ export class NewBlog extends React.Component {
     this.state = {
       title: '',
       body: '',
-      date: ''
+      date:  (new Date())
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,42 +38,53 @@ export class NewBlog extends React.Component {
   }
 
 
+
   render(){
   
     return(
       <React.Fragment>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="title" placeholder="Blog Title" onChange={this.handleChange} value={this.state.title} /><br/>
-          <input type="text" name="date" placeholder="Date" onChange={this.handleChange} value={this.state.date} /><br/>
-          <textarea type="text" name="body" placeholder="Write content here" onChange={this.handleChange} value={this.state.body}></textarea>
-        <button type="submit">Submit</button>
+      <div className="modal-main">
+        <form 
+          onSubmit={this.handleSubmit}
+          noValidate
+        >
+          <input 
+            type="text" 
+            name="title" 
+            placeholder="Blog Title" 
+            onChange={this.handleChange} 
+            value={this.state.title} 
+            required
+          /><br/>
+          <input 
+            type="text" 
+            name="date"          
+            placeholder="Date" 
+            onChange={this.handleChange} 
+            value={this.state.date}
+            required  
+          /><br/>
+          <textarea 
+            type="text" 
+            name="body" 
+            placeholder="Blog goes here"
+            onChange={this.handleChange} 
+            value={this.state.body}
+            required
+            style={{
+              width: '85%',
+              height: '10rem',
+              margin: '',
+              alignItems: 'center'
+            }}
+
+          ></textarea>
+        <button type="submit">Add New Blog</button>
+        <button type="button" onClick={this.props.closeModal} >close</button>
         </form>
-        <p>title: {this.state.title} </p>
-         <p>body: {this.state.body} </p>
-          <p>date: {this.state.date} </p>
+        </div>
       </React.Fragment>
     )
   }
 }
 export default NewBlog;
-
-
-// Trying to learn for hooks below. Saved to apply to later component:
-  // const initialState = {
-  //   title: '',
-  //   body: '',
-  //   date: '',
-  // }
-
-  // const [state, setState] = useState(initialState);
-
-  // const [title, setTitle] = useState();
-  // const [body, setBody] = useState();
-  // const [date, setDate] = useState();
-
-  // function handleChange(event) {
-    // let newValue = event.target.value;
-    // event.persist();
-    // setState(state => ({...state, [event.target.name]: event.target.value}));
-  //   console.log(state)
-  // }
