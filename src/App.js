@@ -1,15 +1,12 @@
-import BlogList from './components/Blog/BlogList.jsx';
+import Blog from './components/Blog/Blog.jsx';
 import firebase from './firebaseConfig';
 import GlobalHeader from './components/Global/GlobalHeader.jsx';
 import Helmet from 'react-helmet';
 import OAuth from './components/OAuth/OAuth.jsx';
 import PropTypes from 'prop-types';
-import { Switch, Route, withRoute } from 'react-router-dom';
 import React, { Component } from 'react';
-
+import { Switch, Route, withRoute } from 'react-router-dom';
 import './App.css';
-
-
 
 class App extends React.Component {
   constructor(props){
@@ -26,8 +23,6 @@ class App extends React.Component {
   }
 
 render(){
-  // const firebase = firebase.database();
-  // console.log("firebase",firebase)
   return(
   <React.Fragment>
     <Helmet>
@@ -38,7 +33,7 @@ render(){
     <GlobalHeader />
     <Switch>
       <Route exact path='/' render={() =>
-         <BlogList /> 
+         <Blog /> 
          } />
       <Route path='/admin' render={() => <OAuth onSetUser={this.handleSetUser} />} />
       {/* <Route path='/error404' render={() => <Error404 />} /> */}
