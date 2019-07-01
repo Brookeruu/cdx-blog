@@ -1,14 +1,15 @@
 import * as firebase from "firebase/app";
 import App from './App';
 import firebaseConfig from './firebaseConfig';
+import { HashRouter } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { HashRouter } from 'react-router-dom';
-
-const title = 'Blogs on Blogs on Blogs on Blogs';
+import './index.css';
 
 ReactDOM.render(
-  <App title={title}/>,
+  <HashRouter>
+    <App/>
+  </HashRouter>,
   document.getElementById('app')
 );
 
