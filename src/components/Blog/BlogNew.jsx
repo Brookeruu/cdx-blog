@@ -1,4 +1,5 @@
 import firebase from '../../firebaseConfig';
+// import moment from 'react-moment';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import './index.css';
@@ -9,12 +10,25 @@ export class NewBlog extends React.Component {
     this.state = {
       title: '',
       body: '',
-      date:  (new Date())
+      date: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  closeModal() {
+    this.props.closeModal
+    console.log("closemodal")
+  }
+
+  componentWillUnMount(){
+    this._isMounted = false;
+  }
+    
   handleChange(e){
     this.setState({
       [event.target.name]: e.target.value
@@ -34,9 +48,10 @@ export class NewBlog extends React.Component {
       title: '',
       body: '',
       date: ''
-    })
+    });
   }
 
+ 
 
 
   render(){
@@ -59,7 +74,7 @@ export class NewBlog extends React.Component {
           <input 
             type="text" 
             name="date"          
-            placeholder="Date" 
+            placeholder="Date"
             onChange={this.handleChange} 
             value={this.state.date}
             required  
@@ -71,15 +86,10 @@ export class NewBlog extends React.Component {
             onChange={this.handleChange} 
             value={this.state.body}
             required
-            style={{
-              width: '85%',
-              height: '10rem',
-              margin: '',
-              alignItems: 'center'
-            }}
+            className="text-area"
 
-          ></textarea>
-        <button type="submit">Add New Blog</button>
+          ></textarea><br/>
+        <button type="submit" onClick={this.props.closeModal}>Add New Blog</button> 
         <button type="button" onClick={this.props.closeModal} >close</button>
         </form>
         </div>

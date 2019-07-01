@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Edit from '../update/Edit.jsx';
+// import css from './index.css';
 
 import  {
   CardWrapper,
@@ -21,6 +23,13 @@ function Card(props) {
             {props.body}
           </CardInput> */}
         </CardBody>
+      <Edit 
+        body={props.body}
+        date={props.date}
+        id={props.id}
+        title={props.title}
+
+      />
       </CardWrapper>
     </div>
   )

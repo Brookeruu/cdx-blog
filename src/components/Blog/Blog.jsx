@@ -32,8 +32,9 @@ export class Blog extends React.Component {
         <Card 
           title={this.state.list[index].title}
           body={this.state.list[index].body}
+          date={this.state.list[index].date}
           key={index}
-          id={index + 1}
+          id={index}
         />
         )
       }

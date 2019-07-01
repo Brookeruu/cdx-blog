@@ -1,4 +1,12 @@
-.modal {
+.edit {
+  border: 1px solid orange;
+  border-radius: 3px;
+  height: 2rem;
+  margin-left: 2rem;
+  /* padding: 1rem; */
+}
+
+.edit-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -7,7 +15,7 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-.modal-main {
+.edit-modal-main {
   position:fixed;
   background: white;
   width: 80%;

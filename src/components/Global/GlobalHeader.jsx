@@ -17,19 +17,43 @@ class GlobalHeader extends React.Component {
     this.showModal = this.showModal.bind(this);
   }
 
+    componentDidMount() {
+    this._isMounted = true;
+  }
+
   showModal(){
     this.setState({ showModal: true })
   }
 
   hideModal(){
     this.setState({ showModal: false })
+    console.log("global - closeModal")
   }
 
+  // componentDidUpdate(prevState){
+  //   if(this.state.showModal !== prevState.showModal){
+  //     this.setState({showModal: false })
+  //   }
+  // }
+
+
+  componentWillUnMount(){
+    this._isMounted = false;
+  }
   render(){
     return(
-     
+     <div>
+      <img alt={"laptop"} src={require("/Users/brookeperry/Dev/connective/my-blog/public/images/laptop5.png")}
+            style={{
+              width: '100%',
+              maxWidth: '1080px',
+              height: 'auto',
+              marginBottom: '0px'
+            }}
+      ></img>
+    
         <div className="global-header">
-          <p style={{paddingLeft: '2rem', width: '50%'}}>Blogg Blawg Blog</p>
+          <p style={{paddingLeft: '2rem', width: '50%'}}> Blawg </p>
 
           <p 
           className="add-new" 
@@ -50,7 +74,7 @@ class GlobalHeader extends React.Component {
             <NewBlog closeModal={this.hideModal}/>
           </div>
 
-          
+           </div>
       </div>
     )
   }

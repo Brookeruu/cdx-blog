@@ -10,7 +10,7 @@
   /* padding-left: 2rem; */
   position: relative;
   top: 0;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .add-new {
@@ -54,4 +54,16 @@
 
 .display-none {
   display: none;
+}
+
+.image {
+  /* background-image: url('../../images/laptop4.png'); */
+  height: 500px;
+  width: 1080px;
+  background-size: fill;
+  max-width: 1080px;
+  background-size: 1080px;
+
+/* margin: 0 auto !important;
+float: none !important; */
 }

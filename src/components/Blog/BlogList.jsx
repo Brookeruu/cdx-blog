@@ -7,7 +7,6 @@ const BlogList = props => {
   return(
     <React.Fragment>
       <Blog />
-      {/* <NewBlog /> */}
     </React.Fragment>
   )
 }
