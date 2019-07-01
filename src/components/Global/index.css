@@ -19,7 +19,6 @@
   width: 50%;
   justify-content: flex-end;
   margin-left: 40%;
-
 }
 
 .add-new:hover {
@@ -57,13 +56,13 @@
 }
 
 .image {
-  /* background-image: url('../../images/laptop4.png'); */
-  height: 500px;
-  width: 1080px;
-  background-size: fill;
+  width: 100%;
   max-width: 1080px;
-  background-size: 1080px;
+  height: auto;
+  margin-bottom: 0px;
+}
 
-/* margin: 0 auto !important;
-float: none !important; */
+.blawg {
+  padding-left: 2rem;
+  width: 50%;
 }

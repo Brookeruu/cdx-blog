@@ -1,9 +1,7 @@
-// import fireIcon from '../../images/logo-firebase.svg';
 import Modal from '../Modal/Modal.jsx';
 import NewBlog from '../Blog/BlogNew.jsx';
-import React from 'react';
 import PropTypes from 'prop-types';
-
+import React from 'react';
 import './index.css';
 
 class GlobalHeader extends React.Component {
@@ -36,29 +34,25 @@ class GlobalHeader extends React.Component {
   //   }
   // }
 
-
   componentWillUnMount(){
     this._isMounted = false;
   }
   render(){
     return(
      <div>
-      <img alt={"laptop"} src={require("/Users/brookeperry/Dev/connective/my-blog/public/images/laptop5.png")}
-            style={{
-              width: '100%',
-              maxWidth: '1080px',
-              height: 'auto',
-              marginBottom: '0px'
-            }}
+      <img 
+        alt={"laptop"} 
+        className="image"
+        src={require("/Users/brookeperry/Dev/connective/my-blog/public/images/laptop5.png")}
       ></img>
     
         <div className="global-header">
-          <p style={{paddingLeft: '2rem', width: '50%'}}> Blawg </p>
+          <p className="blawg"> Blawg </p>
 
           <p 
-          className="add-new" 
-          onClick={this.showModal}
-          >Add Blog
+            className="add-new" 
+            onClick={this.showModal}
+          > New Entry
           </p>
           
           <a href="https://console.firebase.google.com/u/0/project/my-blog-677b8/overview" target="_blank">
