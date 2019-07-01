@@ -12,6 +12,7 @@ export class Delete extends React.Component {
     }
     this.hideDeleteButton = this.hideDeleteButton.bind(this);
     this.showDeleteButton = this.showDeleteButton.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   hideDeleteButton(){
@@ -22,10 +23,9 @@ export class Delete extends React.Component {
     this.setState({showDeleteButton: true, showConfirmButton: false})
   }
 
-  handleDelete(e){
+  handleSubmit(e){
     event.preventDefault();
-    // let id = this.props.id
-    const blogRef = firebase.database().ref('blog/' + this.state.id ).remove();
+    const blogRef = firebase.database().ref(`blog/${this.props.id}`).remove();
   }
 
   render(){
@@ -38,17 +38,20 @@ export class Delete extends React.Component {
         
         <div 
         className={this.state.showConfirmButton ? "confirm" : "display-none"}>
-        Are you sure you want to delete this Blawg?
-        <form onSubmit={this.handleDelete}>
-        <button 
-          type="submit"
-          className="buttons" 
-          
-        >Yes, delete! </button></form>
-        <button 
-          className="buttons"
-          onClick={this.showDeleteButton}
-        >Cancel</button>
+        <p>Are you sure you want to delete this Blawg?</p>
+          <form onSubmit={this.handleSubmit}>
+            <button 
+              className="buttons"
+              onClick={this.showDeleteButton}
+              type="button"
+            >Cancel</button>
+             <button 
+              type="submit"
+              className="buttons"
+              onClick={this.showDeleteButton}  
+            >Yes, delete! </button>
+        </form>
+         
         </div>
       </React.Fragment>
     )
