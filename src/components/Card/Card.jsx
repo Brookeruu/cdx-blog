@@ -22,6 +22,12 @@ export const CardHeading = styled.h1`
   font-weight: bold;
 `;
 
+export const CardSubheading = styled.h5`
+  font-size: 0.5rem;
+  color: gray;
+  margin-bottom: 0px;
+`
+
 export const CardBody = styled.div`
   padding: 2rem;
   padding-top: 0rem;

@@ -1,9 +1,6 @@
-import React from 'react';
 import firebase from '../../firebaseConfig';
+import React from 'react';
 import './index.css';
-
-//get data by id# to edit - on a click - and when the component updates
-
 
 class Edit extends React.Component {
   constructor(props) {
@@ -12,15 +9,16 @@ class Edit extends React.Component {
       showModal: false,
       id: this.props.id,
       title: this.props.title,
-      body: this.props.body
+      body: this.props.body,
+      date: this.props.date
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-   handleClick(e) {
-    e.preventDefault();
+  handleClick(e) {
+  e.preventDefault();
    this.setState({ showModal: true});
   }
 
@@ -36,13 +34,12 @@ class Edit extends React.Component {
 
   handleSubmit(edit){
     event.preventDefault();
-    // let id = this.state.id
     const blogRef = firebase.database().ref('blog/' + this.props.id ).set({
       title: this.state.title,
-      body: this.state.body
+      body: this.state.body,
+      date: this.state.date
     });
     this.setState({ showModal: false });
-    console.log("submit state",this.props)
   };
 
   render(){

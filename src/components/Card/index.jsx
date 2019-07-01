@@ -1,16 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Edit from '../update/Edit.jsx';
-import Delete from '../update/Delete.jsx';
-// import css from './index.css';
-
 import  {
   CardWrapper,
   CardHeader,
   CardHeading,
   CardBody,
-  CardInput
+  CardInput,
+  CardSubheading
 } from "./Card.jsx";
+import Delete from '../Update/Delete.jsx';
+import Edit from '../Update/Edit.jsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 function Card(props) {
   return(
@@ -18,20 +17,16 @@ function Card(props) {
       <CardWrapper>
         <CardHeader>
           <CardHeading>{props.title}</CardHeading>
+          <CardSubheading>{props.date}</CardSubheading>
         </CardHeader>
-        <CardBody> {props.body}
-          {/* <CardInput>
-            {props.body}
-          </CardInput> */}
-        </CardBody>
+        <CardBody> {props.body}</CardBody>
       <Edit 
         body={props.body}
         date={props.date}
         id={props.id}
         title={props.title}
       />
-      
-        <Delete 
+      <Delete 
         id={props.id}
       />
       </CardWrapper>
