@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Edit from '../update/Edit.jsx';
+import Delete from '../update/Delete.jsx';
 // import css from './index.css';
 
 import  {
@@ -28,7 +29,10 @@ function Card(props) {
         date={props.date}
         id={props.id}
         title={props.title}
-
+      />
+      
+        <Delete 
+        id={props.id}
       />
       </CardWrapper>
     </div>

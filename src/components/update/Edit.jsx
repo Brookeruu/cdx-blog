@@ -36,7 +36,7 @@ class Edit extends React.Component {
 
   handleSubmit(edit){
     event.preventDefault();
-    let id = this.state.id
+    // let id = this.state.id
     const blogRef = firebase.database().ref('blog/' + this.props.id ).set({
       title: this.state.title,
       body: this.state.body
