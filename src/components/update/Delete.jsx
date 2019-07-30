@@ -41,13 +41,13 @@ export class Delete extends React.Component {
         <p>Are you sure you want to delete this Blawg?</p>
           <form onSubmit={this.handleSubmit}>
             <button 
-              className="buttons"
+              className="buttons cancel"
               onClick={this.showDeleteButton}
               type="button"
             >Cancel</button>
              <button 
               type="submit"
-              className="buttons"
+              className="buttons delete"
               onClick={this.showDeleteButton}  
             >Yes, delete! </button>
         </form>

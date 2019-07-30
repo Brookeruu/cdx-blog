@@ -9,7 +9,8 @@ class GlobalHeader extends React.Component {
     super(props);
     this.state ={
       isActive: false,
-      showModal: false
+      showModal: false,
+      scroll: false
     }
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -17,6 +18,15 @@ class GlobalHeader extends React.Component {
 
     componentDidMount() {
     this._isMounted = true;
+    window.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 500;
+      console.log(scrollY)
+      if (isTop !== true) {
+        this.setState({ scroll: true });
+      } else {
+        this.setState({ scroll: false });
+      }
+    });
   }
 
   showModal(){
@@ -36,17 +46,18 @@ class GlobalHeader extends React.Component {
 
   componentWillUnMount(){
     this._isMounted = false;
+    window.removeEventListener('scroll');
   }
   render(){
     return(
      <div>
-      <img 
-        alt={"laptop"} 
-        className="image"
-        src={require("/Users/brookeperry/Dev/connective/my-blog/public/images/laptop5.png")}
-      ></img>
-    
-        <div className="global-header">
+        <img 
+          alt={"laptop"} 
+          className="image"
+          src={require("/Users/brookeperry/Dev/connective/my-blog/public/images/laptop3.png")}
+        ></img>
+        
+        <div className={this.state.scroll ? "global-header sticky" : "global-header"}>
           <p className="blawg"> Blawg </p>
 
           <p 
@@ -59,7 +70,7 @@ class GlobalHeader extends React.Component {
             <img 
             src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" alt="firebase"
             style={{
-              maxHeight: '2.75em',
+              maxHeight: '2rem',
               marginRight: '2rem'
             }}></img>
           </a>

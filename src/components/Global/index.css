@@ -10,7 +10,12 @@
   /* padding-left: 2rem; */
   position: relative;
   top: 0;
+  transition: 0.25s;
   /* width: 100%; */
+}
+
+.sticky {
+  /* position: fixed; */
 }
 
 .add-new {
@@ -59,7 +64,8 @@
   width: 100%;
   max-width: 1080px;
   height: auto;
-  margin-bottom: 0px;
+  margin-bottom: -9rem;
+  transition: 0.25s;
 }
 
 .blawg {
