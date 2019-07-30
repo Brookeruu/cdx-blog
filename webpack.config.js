@@ -30,7 +30,7 @@ module.exports = {
     extensions: ['*', '.js', 'jsx']
   },
   output: {
-    path: __dirname + '/build',
+    path: __dirname + '/dist',
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -40,5 +40,8 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     hot: true
+  },
+  performance: {
+    hints: process.env.NODE_ENV === 'production' ? "warning" : false
   }
 };
