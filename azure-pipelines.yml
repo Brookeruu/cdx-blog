@@ -9,9 +9,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  FIREBASE_TOKEN: $(FIREBASE_TOKEN)
-
 steps:
 - task: NodeTool@0
   inputs:
@@ -22,5 +19,5 @@ steps:
     npm install
     npm install firebase-tools
     npm run build
-    firebase deploy --token "$(FIREBASE_TOKEN)"
+    firebase deploy --token "$FIREBASE_TOKEN"
   displayName: 'npm install and build'
