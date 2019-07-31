@@ -40,7 +40,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new Dotenv({
-        path: path.resolve(__dirname, '..', '.env'),
+        path: path.resolve(__dirname, 'src', '.env'),
     })
   ],
   devServer: {
