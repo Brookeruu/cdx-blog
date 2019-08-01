@@ -38,10 +38,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new Dotenv({
-        path: path.resolve(__dirname, 'src', '.env'),
-    })
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     contentBase: './dist',
