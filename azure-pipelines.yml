@@ -19,7 +19,6 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm prune
     npm install
     npm install firebase-tools
     npm run build
