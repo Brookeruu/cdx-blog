@@ -3,7 +3,7 @@ import firebase from '../../firebaseConfig';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 
-const Blogs = props => {
+const BlogsHook = props => {
   
 // const database = firebase.database().ref('blog/');
 
@@ -16,12 +16,8 @@ useEffect(() => {
   let ref = firebase.database().ref('blog/')
   ref.on('value', (snap) => {
       list = Object.assign({}, snap.val());
-        console.log("2",list, blogList)
-        // console.log(list, blogList)
     });
   setBlogList(list)
-  console.log(setBlogList(list))
-  console.log("3",list)
 }, []);
 
 const getBlogs = () => {
@@ -31,7 +27,6 @@ const getBlogs = () => {
       list = Object.assign({}, snap.val());
       setBlogList(list)
     });
-    console.log(list)
     return list
 }
   return(
@@ -50,4 +45,4 @@ const getBlogs = () => {
   );
 };
 
-export default Blog;
+export default BlogsHook;

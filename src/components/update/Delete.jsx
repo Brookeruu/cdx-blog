@@ -1,5 +1,5 @@
-import firebase from '../../firebaseConfig';
 import React from 'react';
+import firebase from '../../firebaseConfig';
 import './index.css';
 
 export class Delete extends React.Component {
@@ -8,53 +8,51 @@ export class Delete extends React.Component {
     this.state = {
       showDeleteButton: true,
       showConfirmButton: false,
-      id: this.props.id
-    }
+      id: this.props.id,
+    };
     this.hideDeleteButton = this.hideDeleteButton.bind(this);
     this.showDeleteButton = this.showDeleteButton.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
-  hideDeleteButton(){
-    this.setState({showDeleteButton: false, showConfirmButton: true})
+
+  hideDeleteButton() {
+    this.setState({ showDeleteButton: false, showConfirmButton: true });
   }
 
-  showDeleteButton(){
-    this.setState({showDeleteButton: true, showConfirmButton: false})
+  showDeleteButton() {
+    this.setState({ showDeleteButton: true, showConfirmButton: false });
   }
 
-  handleSubmit(e){
+  handleSubmit(event) {
     event.preventDefault();
-    const blogRef = firebase.database().ref(`blog/${this.props.id}`).remove();
+    firebase.database().ref(`blog/${this.props.id}`).remove();
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <React.Fragment>
-        <button 
-        className={this.state.showDeleteButton ? "delete" : "delete display-none"}
+        <button
+        className={this.state.showDeleteButton ? 'delete' : 'delete display-none'}
         onClick={this.hideDeleteButton}
         >Delete Entry</button>
-        
-        <div 
-        className={this.state.showConfirmButton ? "confirm" : "display-none"}>
+        <div
+        className={this.state.showConfirmButton ? 'confirm' : 'display-none'}>
         <p>Are you sure you want to delete this Blawg?</p>
           <form onSubmit={this.handleSubmit}>
-            <button 
+            <button
               className="buttons cancel"
               onClick={this.showDeleteButton}
               type="button"
             >Cancel</button>
-             <button 
+             <button
               type="submit"
               className="buttons delete"
-              onClick={this.showDeleteButton}  
+              onClick={this.showDeleteButton}
             >Yes, delete! </button>
         </form>
-         
         </div>
       </React.Fragment>
-    )
+    );
   }
 }
 

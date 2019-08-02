@@ -1,26 +1,24 @@
-import Modal from '../Modal/Modal.jsx';
-import NewBlog from '../Blog/BlogNew.jsx';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import NewBlog from '../Blog/BlogNew.jsx';
 import './index.css';
 
 class GlobalHeader extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       isActive: false,
       showModal: false,
-      scroll: false
-    }
+      scroll: false,
+    };
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
   }
 
-    componentDidMount() {
+  componentDidMount() {
     this._isMounted = true;
     window.addEventListener('scroll', () => {
       const isTop = window.scrollY < 500;
-      console.log(scrollY)
       if (isTop !== true) {
         this.setState({ scroll: true });
       } else {
@@ -29,59 +27,53 @@ class GlobalHeader extends React.Component {
     });
   }
 
-  showModal(){
-    this.setState({ showModal: true })
+  showModal() {
+    this.setState({ showModal: true });
   }
 
-  hideModal(){
-    this.setState({ showModal: false })
-    console.log("global - closeModal")
+  hideModal() {
+    this.setState({ showModal: false });
   }
 
-  // componentDidUpdate(prevState){
-  //   if(this.state.showModal !== prevState.showModal){
-  //     this.setState({showModal: false })
-  //   }
-  // }
-
-  componentWillUnMount(){
+  componentWillUnMount() {
     this._isMounted = false;
     window.removeEventListener('scroll');
   }
-  render(){
-    return(
+
+  render() {
+    return (
      <div>
-        <img 
-          alt={"laptop"} 
+        <img
+          alt={'laptop'}
           className="image"
-          src={require("/Users/brookeperry/Dev/connective/my-blog/public/images/laptop3.png")}
+          src={require('/Users/brookeperry/Dev/connective/my-blog/public/images/laptop3.png')}
         ></img>
-        
-        <div className={this.state.scroll ? "global-header sticky" : "global-header"}>
+
+        <div className={this.state.scroll ? 'global-header sticky' : 'global-header'}>
           <p className="blawg"> Blawg </p>
 
-          <p 
-            className="add-new" 
+          <p
+            className="add-new"
             onClick={this.showModal}
           > New Entry
           </p>
-          
+
           <a href="https://console.firebase.google.com/u/0/project/my-blog-677b8/overview" target="_blank">
-            <img 
+            <img
             src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" alt="firebase"
             style={{
               maxHeight: '2rem',
-              marginRight: '2rem'
+              marginRight: '2rem',
             }}></img>
           </a>
 
-          <div className={this.state.showModal ? "modal display-block" : "modal display-none"} >
+          <div className={this.state.showModal ? 'modal display-block' : 'modal display-none'} >
             <NewBlog closeModal={this.hideModal}/>
           </div>
 
            </div>
       </div>
-    )
+    );
   }
 }
 

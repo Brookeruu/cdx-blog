@@ -1,16 +1,16 @@
-import firebase from '../../firebaseConfig';
+import React from 'react';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import firebase from '../../firebaseConfig';
 import './index.css';
 
 export class NewBlog extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       title: '',
       body: '',
-      date: ''
-    }
+      date: '',
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -20,75 +20,76 @@ export class NewBlog extends React.Component {
   }
 
   closeModal() {
-    this.props.closeModal
+    this.props.closeModal;
   }
 
-  componentWillUnMount(){
+  componentWillUnMount() {
     this._isMounted = false;
   }
-    
-  handleChange(e){
-    this.setState({
-      [event.target.name]: e.target.value
-    })
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit(event){
+  handleSubmit(event) {
     event.preventDefault();
-    const blogRef = firebase.database().ref('blog/' )
+    const blogRef = firebase.database().ref('blog/');
     const blog = {
       title: this.state.title,
       body: this.state.body,
-      date: this.state.date
-    }
+      date: this.state.date,
+    };
     blogRef.push(blog);
     this.setState({
       title: '',
       body: '',
-      date: ''
+      date: '',
     });
   }
 
-  render(){
-  
-    return(
+  render() {
+    return (
       <React.Fragment>
       <div className="modal-main">
-        <form 
+        <form
           onSubmit={this.handleSubmit}
           noValidate
         >
-          <input 
-            type="text" 
-            name="title" 
-            placeholder="Blog Title" 
-            onChange={this.handleChange} 
-            value={this.state.title} 
+          <input
+            type="text"
+            name="title"
+            placeholder="Blog Title"
+            onChange={this.handleChange}
+            value={this.state.title}
             required
           /><br/>
-          <input 
-            type="text" 
-            name="date"          
+          <input
+            type="text"
+            name="date"
             placeholder="Date"
-            onChange={this.handleChange} 
+            onChange={this.handleChange}
             value={this.state.date}
-            required  
+            required
           /><br/>
-          <textarea 
-            type="text" 
-            name="body" 
+          <textarea
+            type="text"
+            name="body"
             placeholder="Blog goes here"
-            onChange={this.handleChange} 
+            onChange={this.handleChange}
             value={this.state.body}
             required
             className="text-area"
           ></textarea><br/>
-          <button type="submit" onClick={this.props.closeModal}>Add New Blog</button> 
+          <button type="submit" onClick={this.props.closeModal}>Add New Blog</button>
           <button type="button" onClick={this.props.closeModal} >close</button>
         </form>
         </div>
       </React.Fragment>
-    )
+    );
   }
 }
+
+NewBlog.propTypes = {
+  closeModal: PropTypes.func,
+};
 export default NewBlog;

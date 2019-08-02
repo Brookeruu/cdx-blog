@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-export const CardWrapper = styled.div `
+export const CardWrapper = styled.div`
   overflow: scroll;
   padding: 0 0 2rem;
   margin: 1rem auto 1rem;
@@ -26,7 +26,7 @@ export const CardSubheading = styled.h5`
   font-size: 0.5rem;
   color: gray;
   margin-bottom: 0px;
-`
+`;
 
 export const CardBody = styled.div`
   padding: 2rem;
@@ -52,6 +52,3 @@ export const CardInput = styled.input`
     border: 1px solid black;
   } */}
 `;
-
-
-

@@ -1,18 +1,17 @@
-import  {
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
   CardWrapper,
   CardHeader,
   CardHeading,
   CardBody,
-  CardInput,
   CardSubheading
-} from "./Card.jsx";
+} from './Card.jsx';
 import Delete from '../Update/Delete.jsx';
 import Edit from '../Update/Edit.jsx';
-import PropTypes from 'prop-types';
-import React from 'react';
 
 function Card(props) {
-  return(
+  return (
     <div>
       <CardWrapper>
         <CardHeader>
@@ -20,30 +19,30 @@ function Card(props) {
           <CardSubheading>{props.date}</CardSubheading>
         </CardHeader>
         <CardBody> {props.body}</CardBody>
-      <Edit 
+      <Edit
         body={props.body}
         date={props.date}
         id={props.id}
         title={props.title}
       />
-      <Delete 
+      <Delete
         id={props.id}
       />
       </CardWrapper>
     </div>
-  )
-};
+  );
+}
 
 Card.defaultProps = {
-  title: "Blog Title",
+  title: 'Blog Title',
   body: 'Blog Body',
-  date: "today"
-}
+  date: 'today',
+};
 
 Card.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
-  date: PropTypes.string
-}
+  date: PropTypes.string,
+};
 
 export default Card;
