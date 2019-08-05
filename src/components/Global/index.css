@@ -7,19 +7,20 @@
   font-size: 1.5rem;
   height: 5rem;
   margin: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
   overflow: hidden;
   font-family: 'Pompiere', cursive;
   position: relative;
   top: 0;
   transition: 0.25s;
-  /* width: 100%; */
 }
 
 .add-new {
   color: white;
   cursor: pointer;
-  width: 50%;
-  justify-content: flex-end;
+  /* width: 50%; */
+  text-align: -webkit-center;
   margin-left: 40%;
 }
 
@@ -68,4 +69,26 @@
 .blawg {
   padding-left: 2rem;
   width: 50%;
+}
+
+.icons {
+  height: 2rem;
+  margin: .5rem;
+  /* align-self: center; */
+  /* position: absolute; */
+}
+
+.icons:hover {
+  height: 2.2rem;
+  margin: .4rem;
+}
+
+.typewriter{
+  letter-spacing: .15rem;
+  width: 75%;
+}
+.links {
+  display: flex;
+  justify-content: flex-end;
+  width: 25%;
 }

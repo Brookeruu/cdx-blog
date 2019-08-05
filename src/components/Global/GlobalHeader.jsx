@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NewBlog from '../Blog/BlogNew.jsx';
 import blogImage from '../../../public/images/pineapple-resize.png';
-
+import githubIcon from '../../../public/images/github-icon.png';
+import linkedinIcon from '../../../public/images/linkedin-icon.png';
 import './index.css';
+import pencilIcon from '../../../public/images/pencil-icon.png';
+
+
 
 class GlobalHeader extends React.Component {
   constructor(props) {
@@ -52,22 +56,36 @@ class GlobalHeader extends React.Component {
         ></img>
 
         <div className={this.state.scroll ? 'global-header sticky' : 'global-header'}>
-          <p className="blawg"> Blawg </p>
-
-          <p
-            className="add-new"
-            onClick={this.showModal}
-          > New Entry
-          </p>
-
-          <a href="https://console.firebase.google.com/u/0/project/my-blog-677b8/overview" target="_blank">
+          <p className="typewriter"> Hi, I'm Brooke. </p>
+          <div className="links">
             <img
-            src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" alt="firebase"
-            style={{
-              maxHeight: '2rem',
-              marginRight: '2rem',
-            }}></img>
-          </a>
+              className="add-new"
+              onClick={this.showModal}
+              src={pencilIcon} alt="github"
+              className="icons"
+            ></img>
+
+            <a href="https://console.firebase.google.com/u/0/project/my-blog-677b8/overview" target="_blank">
+              <img
+              src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" alt="firebase"
+              className="icons"
+              ></img>
+            </a>
+
+            <a href="https://www.linkedin.com/in/perry-brooke/" target="_blank">
+              <img
+              src={linkedinIcon} alt="linkedin"
+              className="icons"
+              ></img>
+            </a>
+
+            <a href="https://github.com/Brookeruu" target="_blank">
+              <img
+              src={githubIcon} alt="github"
+              className="icons"
+              ></img>
+            </a>
+          </div>
 
           <div className={this.state.showModal ? 'modal display-block' : 'modal display-none'} >
             <NewBlog closeModal={this.hideModal}/>
