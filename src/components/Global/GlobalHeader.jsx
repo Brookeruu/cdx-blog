@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NewBlog from '../Blog/BlogNew.jsx';
+import blogImage from '../../../public/images/pineapple-resize.png';
+
 import './index.css';
 
 class GlobalHeader extends React.Component {
@@ -46,7 +48,7 @@ class GlobalHeader extends React.Component {
         <img
           alt={'laptop'}
           className="image"
-          src={require('/Users/brookeperry/Dev/connective/my-blog/public/images/laptop3.png')}
+          src={blogImage}
         ></img>
 
         <div className={this.state.scroll ? 'global-header sticky' : 'global-header'}>

@@ -18,14 +18,17 @@ export const CardHeader = styled.header`
 `;
 
 export const CardHeading = styled.h1`
-  font-size: 1rem;
+  font-family: 'Pompiere', cursive;
+  font-size: 1.5rem;
   font-weight: bold;
 `;
 
 export const CardSubheading = styled.h5`
-  font-size: 0.5rem;
+font-family: 'Pompiere', cursive;
   color: gray;
+  font-size: 0.75rem;
   margin-bottom: 0px;
+  text-transform: uppercase;
 `;
 
 export const CardBody = styled.div`
