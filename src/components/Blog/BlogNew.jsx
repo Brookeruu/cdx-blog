@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import firebase from '../../firebaseConfig';
+import Date from './Date.jsx';
 import './index.css';
 
 export class NewBlog extends React.Component {
@@ -13,6 +14,7 @@ export class NewBlog extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDate = this.handleDate.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +31,10 @@ export class NewBlog extends React.Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleDate(input) {
+    this.setState({ date: input });
   }
 
   handleSubmit(event) {
@@ -56,6 +62,7 @@ export class NewBlog extends React.Component {
           noValidate
         >
           <input
+            className="input"
             type="text"
             name="title"
             placeholder="Blog Title"
@@ -63,18 +70,11 @@ export class NewBlog extends React.Component {
             value={this.state.title}
             required
           /><br/>
-          <input
-            type="text"
-            name="date"
-            placeholder="Date"
-            onChange={this.handleChange}
-            value={this.state.date}
-            required
-          /><br/>
+          <Date onDate={this.handleDate} />
           <textarea
             type="text"
             name="body"
-            placeholder="Blog goes here"
+            placeholder="Text area ..."
             onChange={this.handleChange}
             value={this.state.body}
             required
