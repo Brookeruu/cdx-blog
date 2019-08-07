@@ -1,6 +1,9 @@
 import React from 'react';
 import Card from '../Card/index.jsx';
 import firebase from '../../firebaseConfig';
+import Typewriter from '../Typewriter/Typewriter.jsx';
+import Type from '../Typewriter/Type.jsx';
+
 
 export class Blog extends React.Component {
   constructor(props) {

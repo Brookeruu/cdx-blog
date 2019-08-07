@@ -1,9 +1,8 @@
 .global-header {
   align-items: center;
-  background-color: black;
+  background-color:rgba(0,0,0,0.8);
   color: white;
   display: flex;
-  font-family: sans-serif;
   font-size: 1.5rem;
   height: 5rem;
   margin: auto;
@@ -62,7 +61,7 @@
   width: 100%;
   max-width: 1080px;
   height: auto;
-  margin-bottom: -1rem;
+  margin-bottom: -5.25rem;
   transition: 0.25s;
 }
 
@@ -72,9 +71,9 @@
 }
 
 .icons {
+  align-self: center;
   height: 2rem;
   margin: .5rem;
-  /* align-self: center; */
   /* position: absolute; */
 }
 
@@ -87,6 +86,7 @@
   letter-spacing: .15rem;
   width: 75%;
 }
+
 .links {
   display: flex;
   justify-content: flex-end;

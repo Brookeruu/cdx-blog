@@ -4,10 +4,10 @@ import NewBlog from '../Blog/BlogNew.jsx';
 import blogImage from '../../../public/images/pineapple-resize.png';
 import githubIcon from '../../../public/images/github-icon.png';
 import linkedinIcon from '../../../public/images/linkedin-icon.png';
-import './index.css';
 import pencilIcon from '../../../public/images/pencil-icon.png';
-
-
+import paperPlaneIcon from '../../../public/images/paper-plane-icon.png';
+import Typewriter from '../Typewriter/Typewriter.jsx';
+import './index.css';
 
 class GlobalHeader extends React.Component {
   constructor(props) {
@@ -56,7 +56,9 @@ class GlobalHeader extends React.Component {
         ></img>
 
         <div className={this.state.scroll ? 'global-header sticky' : 'global-header'}>
-          <p className="typewriter"> Hi, I'm Brooke. </p>
+         <div className="typewriter">
+           <Typewriter />
+        </div>
           <div className="links">
             <img
               className="add-new"
@@ -71,6 +73,10 @@ class GlobalHeader extends React.Component {
               className="icons"
               ></img>
             </a>
+            <img
+              className="icons"
+              src={paperPlaneIcon} alt="email icon"
+            ></img>
 
             <a href="https://www.linkedin.com/in/perry-brooke/" target="_blank">
               <img
