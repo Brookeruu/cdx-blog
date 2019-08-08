@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NewBlog from '../Blog/BlogNew.jsx';
 import blogImage from '../../../public/images/pineapple-resize.png';
+import NewBlogHook from '../Blog/BlogNewHook.jsx';
+
 import githubIcon from '../../../public/images/github-icon.png';
 import linkedinIcon from '../../../public/images/linkedin-icon.png';
 import pencilIcon from '../../../public/images/pencil-icon.png';
@@ -93,8 +95,12 @@ class GlobalHeader extends React.Component {
             </a>
           </div>
 
-          <div className={this.state.showModal ? 'modal display-block' : 'modal display-none'} >
+          {/* <div className={this.state.showModal ? 'modal display-block' : 'modal display-none'} >
             <NewBlog closeModal={this.hideModal}/>
+          </div> */}
+
+          <div className={this.state.showModal ? 'modal display-block' : 'modal display-none'} >
+            <NewBlogHook closeModal={this.hideModal}/>
           </div>
 
            </div>

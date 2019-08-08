@@ -42,13 +42,18 @@
  margin-bottom: 1rem;
 }
 
-.form {
+.form-open {
   animation-name: open-modal;
   animation-duration: 0.6s;
   height: 24rem;
 }
 
+
 @keyframes open-modal {
   from {height: 0rem}
   to {height: 24rem}
+}
+
+button {
+  cursor: pointer;
 }
