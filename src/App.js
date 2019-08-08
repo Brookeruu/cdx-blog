@@ -1,7 +1,7 @@
 import React from 'react';
 import Blog from './components/Blog/Blog.jsx';
 // import firebase from './firebaseConfig';
-import GlobalHeader from './components/Global/GlobalHeader.jsx';
+import GlobalHeaderHook from './components/Global/GlobalHeaderHook.jsx';
 import Helmet from 'react-helmet';
 import OAuth from './components/OAuth/OAuth.jsx';
 import Portfolio from './components/Portfolio/Portfolio.jsx';
@@ -31,7 +31,7 @@ class App extends React.Component {
         <meta name="description" content="blogs" />
     </Helmet>
 <div className="body">
-    <GlobalHeader />
+    <GlobalHeaderHook />
     <Switch>
       <Route exact path='/' render={() => <Blog />} />
       <Route path='/admin' render={() => <OAuth onSetUser={this.handleSetUser} />} />
