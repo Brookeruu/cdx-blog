@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../../firebaseConfig';
 import './index.css';
+import Button from '../Button.jsx';
 
 class Edit extends React.Component {
   constructor(props) {
@@ -43,11 +44,11 @@ class Edit extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <button
-          className="edit"
-          onClick={e => this.handleClick(e)}
-          type="button"
-        >Edit Blog</button>
+        <Button 
+        edit
+        onClick={e => this.handleClick(e)}
+        type="button"
+        >Edit Blog</Button>
 
       <div className={this.state.showModal ? 'modal display-block' : 'modal display-none'}>
         <div className="modal-main">
@@ -78,8 +79,8 @@ class Edit extends React.Component {
               className="text-area"
 
             ></textarea><br/>
-          <button type="submit">Update</button>
-          <button type="button" onClick={this.closeModal} >Cancel</button>
+          <Button type="submit">Update</Button>
+          <Button delete type="button" onClick={this.closeModal}>Cancel</Button>
           </form>
           </div>
         </div>

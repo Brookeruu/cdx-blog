@@ -82,7 +82,7 @@ const GlobalHeaderHook = () => {
             </a>
           </div>
           <div className={showModal ? 'modal display-block' : 'modal display-none'} >
-            <NewBlogHook closeModal={hideModal}/>
+            <NewBlogHook closeModal={hideModal} />
           </div>
 
            </div>

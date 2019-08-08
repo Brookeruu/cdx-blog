@@ -24,8 +24,8 @@ export const CardHeading = styled.h1`
 `;
 
 export const CardSubheading = styled.h5`
-font-family: 'Pompiere', cursive;
   color: gray;
+  font-family: 'Pompiere', cursive;
   font-size: 0.75rem;
   margin-bottom: 0px;
   text-transform: uppercase;

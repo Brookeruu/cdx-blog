@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardHeading,
   CardBody,
-  CardSubheading
+  CardSubheading,
 } from './Card.jsx';
 import Delete from '../Update/Delete.jsx';
 import Edit from '../Update/Edit.jsx';
@@ -19,6 +19,7 @@ function Card(props) {
           <CardSubheading>{props.date}</CardSubheading>
         </CardHeader>
         <CardBody> {props.body}</CardBody>
+        {/* <Button>BUTTON</Button> */}
       <Edit
         body={props.body}
         date={props.date}

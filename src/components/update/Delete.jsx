@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../../firebaseConfig';
 import './index.css';
+import Button from '../Button.jsx';
 
 export class Delete extends React.Component {
   constructor(props) {
@@ -31,10 +32,15 @@ export class Delete extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <button
+        {/* <button
         className={this.state.showDeleteButton ? 'delete' : 'delete display-none'}
         onClick={this.hideDeleteButton}
-        >Delete Entry</button>
+        >Delete Entry</button> */}
+        <Button
+          delete
+          className={this.state.showDeleteButton ? '' : 'display-none'}
+          onClick={this.hideDeleteButton}
+        >Delete Entry</Button>
         <div
         className={this.state.showConfirmButton ? 'confirm' : 'display-none'}>
         <p>Are you sure you want to delete this Blawg?</p>
