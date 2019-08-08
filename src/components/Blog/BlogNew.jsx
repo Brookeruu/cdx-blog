@@ -58,6 +58,7 @@ export class NewBlog extends React.Component {
       <React.Fragment>
       <div className="modal-main">
         <form
+          className="form"
           onSubmit={this.handleSubmit}
           noValidate
         >
