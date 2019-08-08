@@ -2,12 +2,15 @@ import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import firebase from '../../firebaseConfig';
 import Date from './Date.jsx';
+import Button from '../Button.jsx';
 import './index.css';
 
 const NewBlogHook = (props) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [date, setDate] = useState('');
+  // const [isActive, setIsActive] = useState(false);
+  const node = useRef();
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -35,10 +38,24 @@ const NewBlogHook = (props) => {
     setDate('');
   };
 
+  const handleClick = (e) => {
+    if (node.current.contains(e.target)) {
+      return;
+    }
+    props.closeModal();
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, []);
+
 
   return (
     <React.Fragment>
-      <div className="modal-main">
+      <div className="modal-main" ref={node}>
         <form
           className="form"
           onSubmit={handleSubmit}
@@ -63,8 +80,8 @@ const NewBlogHook = (props) => {
             required
             className="text-area"
           ></textarea><br/>
-          <button type="submit" onClick={props.closeModal}>Add New Blog</button>
-          <button type="button" onClick={props.closeModal} >close</button>
+          <Button type="submit" onClick={props.closeModal}>Add New</Button>
+          <Button delete type="button" onClick={props.closeModal}>Cancel</Button>
         </form>
       </div>
     </React.Fragment>
