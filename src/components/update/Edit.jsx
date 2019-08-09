@@ -2,6 +2,10 @@ import React from 'react';
 import firebase from '../../firebaseConfig';
 import './index.css';
 import Button from '../Button.jsx';
+import Date from '../Blog/Date.jsx';
+import Input from '../Input.jsx';
+import TextArea from '../TextArea.jsx';
+
 
 class Edit extends React.Component {
   constructor(props) {
@@ -56,21 +60,22 @@ class Edit extends React.Component {
             onSubmit={this.handleSubmit}
             noValidate
           >
-            <input
+           <Date
+              type="text"
+              name="date"
+              className="date"
+              onChange={this.handleChange}
+              defaultValue={this.props.date}
+              required
+            />
+            <Input
               type="text"
               name="title"
               onChange={this.handleChange}
               defaultValue={this.props.title}
               required
-            /><br/>
-            <input
-              type="text"
-              name="date"
-              onChange={this.handleChange}
-              defaultValue={this.props.date}
-              required
-            /><br/>
-            <textarea
+            />
+            <TextArea
               type="text"
               name="body"
               onChange={this.handleChange}
@@ -78,7 +83,7 @@ class Edit extends React.Component {
               required
               className="text-area"
 
-            ></textarea><br/>
+            ></TextArea>
           <Button type="submit">Update</Button>
           <Button delete type="button" onClick={this.closeModal}>Cancel</Button>
           </form>

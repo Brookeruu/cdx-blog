@@ -7,9 +7,10 @@ export const Button = styled.button`
   cursor: pointer;
   font-family: 'Pompiere', cursive;
   font-size: 1rem;
-  height: 1.5rem;
+  height: 1.75rem;
   margin-right: 2rem;
   min-width: 5rem;
+  padding: 0.25rem;
   text-transform: uppercase;
 
   &:hover {

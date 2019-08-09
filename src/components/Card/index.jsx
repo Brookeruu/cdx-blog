@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   CardWrapper,
@@ -10,7 +10,9 @@ import {
 import Delete from '../Update/Delete.jsx';
 import Edit from '../Update/Edit.jsx';
 
+
 function Card(props) {
+  const [expand, setExpand] = useState(false)
   return (
     <div>
       <CardWrapper>
@@ -19,7 +21,6 @@ function Card(props) {
           <CardSubheading>{props.date}</CardSubheading>
         </CardHeader>
         <CardBody> {props.body}</CardBody>
-        {/* <Button>BUTTON</Button> */}
       <Edit
         body={props.body}
         date={props.date}

@@ -13,8 +13,6 @@ export const CardWrapper = styled.div`
 
 export const CardHeader = styled.header`
   padding: 2rem;
-  padding-top: 4rem;
-  padding-bottom: 1rem;
 `;
 
 export const CardHeading = styled.h1`

@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import firebase from '../../firebaseConfig';
-import Date from './Date.jsx';
 import Button from '../Button.jsx';
+import Input from '../Input.jsx';
+import Date from './Date.jsx';
+import TextArea from '../TextArea.jsx';
+
 import './index.css';
 
 const NewBlogHook = (props) => {
@@ -52,7 +55,6 @@ const NewBlogHook = (props) => {
     };
   }, []);
 
-
   return (
     <React.Fragment>
       <div className="modal-main" ref={node}>
@@ -61,25 +63,23 @@ const NewBlogHook = (props) => {
           onSubmit={handleSubmit}
           noValidate
         >
-          <input
-            className="input"
+          <Date onDate={handleDate} className="date"/>
+          <Input
             type="text"
             name="title"
             placeholder="Blog Title"
             onChange={handleTitle}
             value={title}
             required
-          /><br/>
-          <Date onDate={handleDate} />
-          <textarea
+          />
+          <TextArea
             type="text"
             name="body"
             placeholder="Text area ..."
             onChange={handleBody}
             value={body}
             required
-            className="text-area"
-          ></textarea><br/>
+            className="text-area" />
           <Button type="submit" onClick={props.closeModal}>Add New</Button>
           <Button delete type="button" onClick={props.closeModal}>Cancel</Button>
         </form>

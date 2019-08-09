@@ -20,7 +20,7 @@ const Date = (props) => {
       name="startDate"
       dateFormat="MM/dd/yyy"
       placeholderText="Select Date"
-      className="input"
+      className={props.className}
     />
     </div>
   );

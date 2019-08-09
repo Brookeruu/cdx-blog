@@ -32,10 +32,6 @@ export class Delete extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {/* <button
-        className={this.state.showDeleteButton ? 'delete' : 'delete display-none'}
-        onClick={this.hideDeleteButton}
-        >Delete Entry</button> */}
         <Button
           delete
           className={this.state.showDeleteButton ? '' : 'display-none'}
@@ -45,16 +41,15 @@ export class Delete extends React.Component {
         className={this.state.showConfirmButton ? 'confirm' : 'display-none'}>
         <p>Are you sure you want to delete this Blawg?</p>
           <form onSubmit={this.handleSubmit}>
-            <button
-              className="buttons cancel"
+            <Button
               onClick={this.showDeleteButton}
               type="button"
-            >Cancel</button>
-             <button
+            >Cancel</Button>
+             <Button
+              delete
               type="submit"
-              className="buttons delete"
               onClick={this.showDeleteButton}
-            >Yes, delete! </button>
+            >Yes, delete! </Button>
         </form>
         </div>
       </React.Fragment>
