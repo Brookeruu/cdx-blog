@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Blog from './components/Blog/Blog.jsx';
-import Error from './Error.jsx'
+import Error from './Error.jsx';
+import firebase from './components/Firebase/firebaseConfig.js';
 import { FirebaseProvider } from './components/Firebase/FirebaseContext.jsx';
 import GlobalHeader from './components/Global/GlobalHeader.jsx';
 import Helmet from 'react-helmet';
@@ -18,6 +19,16 @@ const App = () => {
   const setAdminLogOut = () => {
     setState(false);
   };
+
+  useEffect(() => {
+    const current = firebase.auth().currentUser;
+    firebase.auth().onAuthStateChanged((current) => {
+      if (current != null) {
+        setAdminLogIn();
+      }
+    });
+    return console.log("unmounting...");
+  }, []);
 
   return (
     <FirebaseProvider value={{ admin, setAdminLogIn, setAdminLogOut }}>
