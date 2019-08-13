@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Blog from './components/Blog/Blog.jsx';
 import Error from './Error.jsx'
+import { FirebaseProvider } from './components/Firebase/FirebaseContext.jsx';
 import GlobalHeader from './components/Global/GlobalHeader.jsx';
 import Helmet from 'react-helmet';
 import OAuth from './components/OAuth/OAuth.jsx';
@@ -10,9 +11,16 @@ import { Switch, Route, withRoute } from 'react-router-dom';
 import './App.css';
 
 const App = () => {
+  const [admin, setState] = useState(false);
+  const setAdminLogIn = () => {
+    setState(true);
+  };
+  const setAdminLogOut = () => {
+    setState(false);
+  };
 
   return (
-    <React.Fragment>
+    <FirebaseProvider value={{ admin, setAdminLogIn, setAdminLogOut }}>
       <Helmet>
         <title>Code Life</title>
         <meta name="description" content="blogs"/>
@@ -26,7 +34,7 @@ const App = () => {
           <Route path='/error404' render={() => <Error404 />} />
         </Switch>
       </div>
-    </React.Fragment>
+    </FirebaseProvider>
   );
 };
 
