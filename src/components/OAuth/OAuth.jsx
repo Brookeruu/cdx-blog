@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import firebase from '../Firebase/firebaseConfig.js';
+import FirebaseContext from '../Firebase/FirebaseContext.jsx';
 import Button from '../Button.jsx';
 import Input from '../Input.jsx';
 import './index.css';
@@ -17,6 +18,7 @@ const OAuth2 = (props) => {
   const [signedIn, setSignedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [invalidLogin, setInvalidLogin] = useState(false);
+  const adminContext = useContext(FirebaseContext);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -24,22 +26,21 @@ const OAuth2 = (props) => {
         setUserId(user.uid);
         setSignedIn(true);
         setEmail(user.email);
-        setInvalidLogin(false)
-        console.log("USER: ", user)
+        setInvalidLogin(false);
+        adminContext.setAdminLogIn();
       }
     });
   }, []);
 
   const handleSignIn = () => {
     firebase.auth().signInWithEmailAndPassword(email, password).then((result) => {
-      const token = result.credential.accessToken;
       const user = result;
       setSignedIn(true);
       setUser(user);
       setInvalidLogin(false)
     }).catch((error) => {
       setInvalidLogin(true);
-      console.log("invalid log in")
+      console.log("invalid log in: ", errorCode, errorMessage)
       const errorCode = error.code;
       const errorMessage = error.message;
     });
@@ -49,6 +50,7 @@ const OAuth2 = (props) => {
     firebase.auth().signOut().then(() => {
       setUserId('');
       setSignedIn(false);
+      adminContext.setAdminLogOut();
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -65,7 +67,6 @@ const OAuth2 = (props) => {
 
   const onSetUser = (user) => {
     if ((user.uid) === process.env.FIREBASE_USER_ID) {
-      console.log("user id: ", user.uid)
       return props.onSetUser;
     }
   };

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import blogImage from '../../../public/images/pineapple-resize.png';
+import FirebaseContext from '../Firebase/FirebaseContext.jsx';
 import githubIcon from '../../../public/images/github-icon.png';
 import linkedinIcon from '../../../public/images/linkedin-icon.png';
 import NewBlog from '../Blog/BlogNew.jsx';
@@ -12,21 +13,23 @@ import './index.css';
 const GlobalHeader = () => {
   const [showModal, setShowModal] = useState(false);
   const [scroll, setScroll] = useState(false);
+  const context = useContext(FirebaseContext);
+  const loggedIn = context.admin;
 
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      const isTop = window.scrollY < 500;
-      console.log(scrollY)
-      if (isTop !== true) {
-        setScroll(true);
-      } else {
-        setScroll(false);
-      }
-    });
-    return () => {
-      window.removeEventListener('scroll');
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', () => {
+  //     const isTop = window.scrollY < 500;
+  //     console.log(scrollY)
+  //     if (isTop !== true) {
+  //       setScroll(true);
+  //     } else {
+  //       setScroll(false);
+  //     }
+  //   });
+  //   return () => {
+  //     window.removeEventListener('scroll');
+  //   };
+  // }, []);
 
   const isModal = () => {
     setShowModal(true);
@@ -35,6 +38,21 @@ const GlobalHeader = () => {
   const hideModal = () => {
     setShowModal(false);
   };
+
+  const displayPencil = (<img
+      className="add-new"
+      onClick={isModal}
+      src={pencilIcon} alt="github"
+      className="icons"
+    ></img>);
+
+  const displayFirebase = (<a
+      href="https://console.firebase.google.com/u/0/project/my-blog-677b8/overview" target="_blank">
+    <img
+      src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" alt="firebase"
+      className="icons"
+      ></img>
+    </a>);
 
   return (
     <div>
@@ -49,19 +67,8 @@ const GlobalHeader = () => {
            <Typewriter />
         </div>
           <div className="links">
-            <img
-              className="add-new"
-              onClick={isModal}
-              src={pencilIcon} alt="github"
-              className="icons"
-            ></img>
-
-            <a href="https://console.firebase.google.com/u/0/project/my-blog-677b8/overview" target="_blank">
-              <img
-              src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" alt="firebase"
-              className="icons"
-              ></img>
-            </a>
+            {loggedIn ? displayPencil : null}
+            {loggedIn ? displayFirebase : null}
             <img
               className="icons"
               src={paperPlaneIcon} alt="email icon"
@@ -88,7 +95,6 @@ const GlobalHeader = () => {
            </div>
       </div>
   );
-
 };
 
 export default GlobalHeader;

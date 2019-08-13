@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   CardWrapper,
@@ -9,10 +9,12 @@ import {
 } from './Card.jsx';
 import Delete from '../Update/Delete.jsx';
 import Edit from '../Update/Edit.jsx';
-
+import FirebaseContext from '../Firebase/FirebaseContext.jsx';
 
 function Card(props) {
-  const [expand, setExpand] = useState(false)
+  const [expand, setExpand] = useState(false);
+  const context = useContext(FirebaseContext);
+  const loggedIn = context.admin;
   return (
     <div>
       <CardWrapper>
@@ -21,15 +23,9 @@ function Card(props) {
           <CardSubheading>{props.date}</CardSubheading>
         </CardHeader>
         <CardBody> {props.body}</CardBody>
-      <Edit
-        body={props.body}
-        date={props.date}
-        id={props.id}
-        title={props.title}
-      />
-      <Delete
-        id={props.id}
-      />
+        {loggedIn ? <Edit body={props.body} date={props.date} id={props.id} title={props.title} />
+          : null}
+        {loggedIn ? <Delete id={props.id}/> : null}
       </CardWrapper>
     </div>
   );
