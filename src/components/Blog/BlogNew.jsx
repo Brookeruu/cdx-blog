@@ -1,99 +1,94 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import firebase from '../../firebaseConfig';
+import firebase from '../Firebase/firebaseConfig';
 import Button from '../Button.jsx';
+import Input from '../Input.jsx';
 import Date from './Date.jsx';
+import TextArea from '../TextArea.jsx';
 import './index.css';
 
-export class NewBlog extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      body: '',
-      date: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDate = this.handleDate.bind(this);
-  }
+const NewBlog = (props) => {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const [date, setDate] = useState('');
+  const node = useRef();
 
-  componentDidMount() {
-    this._isMounted = true;
-  }
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+  };
 
-  closeModal() {
-    this.props.closeModal;
-  }
+  const handleBody = (e) => {
+    setBody(e.target.value);
+  };
 
-  componentWillUnMount() {
-    this._isMounted = false;
-  }
+  const handleDate = (input) => {
+    setDate(input);
+  };
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleDate(input) {
-    this.setState({ date: input });
-  }
-
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const blogRef = firebase.database().ref('blog/');
     const blog = {
-      title: this.state.title,
-      body: this.state.body,
-      date: this.state.date,
+      title,
+      body,
+      date,
     };
     blogRef.push(blog);
-    this.setState({
-      title: '',
-      body: '',
-      date: '',
-    });
-  }
+    setTitle('');
+    setBody('');
+    setDate('');
+  };
 
-  render() {
-    return (
-      <React.Fragment>
-      <div className="modal-main">
+  const handleClick = (e) => {
+    if (node.current.contains(e.target)) {
+      return;
+    }
+    props.closeModal();
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, []);
+
+  return (
+    <React.Fragment>
+      <div className="modal-main" ref={node}>
         <form
           className="form"
-          onSubmit={this.handleSubmit}
+          onSubmit={handleSubmit}
+          autoComplete="off"
           noValidate
         >
-          <input
-            className="input"
+          <Date onDate={handleDate} className="date"/>
+          <Input
             type="text"
             name="title"
             placeholder="Blog Title"
-            onChange={this.handleChange}
-            value={this.state.title}
+            onChange={handleTitle}
+            value={title}
             required
-          /><br/>
-          <Date onDate={this.handleDate} />
-          <textarea
+          />
+          <TextArea
             type="text"
             name="body"
             placeholder="Text area ..."
-            onChange={this.handleChange}
-            value={this.state.body}
+            onChange={handleBody}
+            value={body}
             required
-            className="text-area"
-          ></textarea><br/>
-          <Button edit>Add New</Button>
-          <Button>close</Button>
-          <button type="submit" onClick={this.props.closeModal}>Add New Blog</button>
-          <button type="button" onClick={this.props.closeModal} >close</button>
+            className="text-area" />
+          <Button type="submit" onClick={props.closeModal}>Add New</Button>
+          <Button delete type="button" onClick={props.closeModal}>Cancel</Button>
         </form>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
+      </div>
+    </React.Fragment>
+  );
+};
 
 NewBlog.propTypes = {
   closeModal: PropTypes.func,
 };
+
 export default NewBlog;

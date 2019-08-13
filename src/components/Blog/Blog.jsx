@@ -1,46 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../Card/index.jsx';
-import firebase from '../../firebaseConfig';
+import firebase from '../Firebase/firebaseConfig.js';
 import Typewriter from '../Typewriter/Typewriter.jsx';
 import Type from '../Typewriter/Type.jsx';
 
 
-export class Blog extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: {},
-    };
-  }
+const Blog = (props) => {
+  const [list, setList] = useState({});
 
-  getData() {
-    let newList;
-    const ref = firebase.database().ref('blog/');
+  const getData = () => {
+    const ref = firebase.database().ref('/blog');
     ref.on('value', (snap) => {
-      newList = Object.assign({}, snap.val());
-      this.setState({ list: newList });
+      const newList = Object.assign({}, snap.val());
+      setList(newList);
     });
-  }
+  };
 
-  componentDidMount() {
-    this.getData();
-  }
+  useEffect(() => {
+    getData();
+  }, []);
 
-  render() {
-    return (
-      <div>
+  return (
+    <div>
       {
-        Object.keys(this.state.list).map(index => <Card
-          title={this.state.list[index].title}
-          body={this.state.list[index].body}
-          date={this.state.list[index].date}
+        Object.keys(list).map(index => <Card 
+          title={list[index].title}
+          body={list[index].body}
+          date={list[index].date}
           key={index}
           id={index}
         />)
       }
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Blog;

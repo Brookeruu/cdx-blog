@@ -1,97 +1,106 @@
-import React from 'react';
-import firebase from '../../firebaseConfig';
-import './index.css';
+import React, { useState, useRef, useEffect } from 'react';
+import firebase from '../Firebase/firebaseConfig.js';
 import Button from '../Button.jsx';
 import Date from '../Blog/Date.jsx';
 import Input from '../Input.jsx';
 import TextArea from '../TextArea.jsx';
+import moment from 'moment';
+import './index.css';
 
+const Edit = (props) => {
+  const [showModal, setShowModal] = useState(false);
+  const [id, setId] = useState(props.id);
+  const [title, setTitle] = useState(props.title);
+  const [body, setBody] = useState(props.body);
+  const [date, setDate] = useState(props.date);
+  const node = useRef();
 
-class Edit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showModal: false,
-      id: this.props.id,
-      title: this.props.title,
-      body: this.props.body,
-      date: this.props.date,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  handleClick(e) {
+  const toggleShowModal = (e) => {
     e.preventDefault();
-    this.setState({ showModal: true });
-  }
+    setShowModal(!showModal);
+  };
 
-  closeModal() {
-    this.setState({ showModal: false });
-  }
+  const handleDate = (input) => {
+    setDate(input);
+  };
 
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+  };
 
-  handleSubmit(event) {
-    event.preventDefault();
-    firebase.database().ref(`blog/${this.props.id}`).set({
-      title: this.state.title,
-      body: this.state.body,
-      date: this.state.date,
+  const handleBody = (e) => {
+    setBody(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    firebase.database().ref(`blog/${id}`).set({
+      title,
+      body,
+      date,
     });
-    this.setState({ showModal: false });
-  }
+    setShowModal(false);
+  };
 
-  render() {
-    return (
-      <React.Fragment>
-        <Button 
-        edit
-        onClick={e => this.handleClick(e)}
-        type="button"
-        >Edit Blog</Button>
+  const handleClick = (e) => {
+    if (node.current.contains(e.target)) {
+      return;
+    }
+    setShowModal(false);
+  };
 
-      <div className={this.state.showModal ? 'modal display-block' : 'modal display-none'}>
-        <div className="modal-main">
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, []);
+
+  return (
+    <React.Fragment>
+      <Button 
+      edit
+      onClick={e => toggleShowModal(e)}
+      type="button"
+      >Edit Blog</Button>
+      <div className={showModal ? 'modal display-block' : 'modal display-none'}>
+        <div className="modal-main" ref={node}>
           <form
-            onSubmit={this.handleSubmit}
+            onSubmit={handleSubmit}
+            autoComplete="off"
             noValidate
           >
            <Date
+              onDate={handleDate}
               type="text"
               name="date"
               className="date"
-              onChange={this.handleChange}
-              defaultValue={this.props.date}
+              onChange={handleDate}
+              selected={date}
               required
             />
             <Input
               type="text"
               name="title"
-              onChange={this.handleChange}
-              defaultValue={this.props.title}
+              onChange={handleTitle}
+              defaultValue={props.title}
               required
             />
             <TextArea
               type="text"
               name="body"
-              onChange={this.handleChange}
-              defaultValue={this.props.body}
+              onChange={handleBody}
+              defaultValue={props.body}
               required
               className="text-area"
-
             ></TextArea>
-          <Button type="submit">Update</Button>
-          <Button delete type="button" onClick={this.closeModal}>Cancel</Button>
+            <Button type="submit">Update</Button>
+            <Button delete type="button" onClick={toggleShowModal}>Cancel</Button>
           </form>
-          </div>
         </div>
-      </React.Fragment>
-    );
-  }
-}
+      </div>
+    </React.Fragment>
+  );
+};
 
 export default Edit;

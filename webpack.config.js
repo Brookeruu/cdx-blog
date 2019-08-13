@@ -14,7 +14,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       },
       {
         test: /\.(png|jpg|gif)$/i,
@@ -26,25 +26,27 @@ module.exports = {
             },
           },
         ],
-      }
-    ]
+      },
+    ],
   },
   resolve: {
-    extensions: ['*', '.js', 'jsx']
+    extensions: ['*', '.js', 'jsx'],
   },
   output: {
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new Dotenv(),
+
   ],
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
   },
   performance: {
-    hints: process.env.NODE_ENV === 'production' ? "warning" : false
-  }
+    hints: process.env.NODE_ENV === 'production' ? 'warning' : false,
+  },
 };

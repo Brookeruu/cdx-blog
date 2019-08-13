@@ -1,5 +1,7 @@
-import React from 'react';
-import firebase from '../../firebaseConfig';
+import React, { useState, useEffect } from 'react';
+import firebase from '../Firebase/firebaseConfig.js';
+import Button from '../Button.jsx';
+import Input from '../Input.jsx';
 import './index.css';
 
 const gapi = window.gapi;
@@ -8,67 +10,88 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
+const OAuth2 = (props) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [userId, setUserId] = useState('');
+  const [signedIn, setSignedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [invalidLogin, setInvalidLogin] = useState(false);
 
-export class OAuth extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userId: 'n/a',
-      signedIn: false,
-    };
-    this.handleSignIn = this.handleSignIn.bind(this);
-    this.handleSignOut = this.handleSignOut.bind(this);
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ userId: user.uid });
+      if (user != null) {
+        setUserId(user.uid);
+        setSignedIn(true);
+        setEmail(user.email);
+        setInvalidLogin(false)
+        console.log("USER: ", user)
       }
     });
-  }
+  }, []);
 
-  // eslint-disable-next-line class-methods-use-this
-  handleSignIn() {
-    firebase.auth().signInWithPopup(provider).then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
+  const handleSignIn = () => {
+    firebase.auth().signInWithEmailAndPassword(email, password).then((result) => {
       const token = result.credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
+      const user = result;
+      setSignedIn(true);
+      setUser(user);
+      setInvalidLogin(false)
+    }).catch((error) => {
+      setInvalidLogin(true);
+      console.log("invalid log in")
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+  };
+
+  const handleSignOut = () => {
+    firebase.auth().signOut().then(() => {
+      setUserId('');
+      setSignedIn(false);
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      const email = error.email;
-      const credential = error.credential;
     });
-  }
+  };
 
-  handleSignOut() {
-    firebase.auth().signOut().then(() => {
-      this.setState({ userId: '', signedIn: false });
-    });
-  }
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
-  onSetUser(user) {
-    if ((user) === 'me') {
-      return this.props.onSetUser;
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const onSetUser = (user) => {
+    if ((user.uid) === process.env.FIREBASE_USER_ID) {
+      console.log("user id: ", user.uid)
+      return props.onSetUser;
     }
-    return null;
-  }
+  };
 
-  render() {
-    return (
-      <React.Fragment>
-        {/* Authenication page under construction ... */}
-      <div className="login">
-        <p
-          onClick={this.handleSignIn}
-          className="text">Authenticate Admin</p>
-      </div>
+  const signInDisplay = (
+    <div>
+      <Input onChange={handleEmail} placeholder="email"></Input>
+      <Input onChange={handlePassword} type="password" placeholder="password"></Input>
+      <br/>
+      <Button type="submit" onClick={handleSignIn}>Sign In</Button>
+    </div>
+  );
 
-      </React.Fragment>
-    );
-  }
-}
+  const signOutDisplay = (
+    <div>
+      <p>Signed in as: {email}</p>
+      <Button delete type="submit" onClick={handleSignOut}>Sign Out</Button>
+    </div>
+  );
 
-export default OAuth;
+  return (
+    <div className="login">
+      { invalidLogin ? <p style={{color: 'red'}}>Invalid Log In</p> : null }
+      { signedIn ? signOutDisplay : signInDisplay }
+    </div>
+  );
+};
+
+export default OAuth2;

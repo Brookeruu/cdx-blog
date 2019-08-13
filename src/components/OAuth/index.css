@@ -1,10 +1,7 @@
 .login {
-  width: 40%;
+  width: 60%;
   min-height: 4rem;
-  background-color: gray;
-  border: 1px solid gray;
-  border-radius: 3px;
-  margin: 1rem auto 1rem;
+  margin: 1rem auto;
   align-items: center;
   justify-content: center;
 }

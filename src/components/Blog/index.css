@@ -23,10 +23,10 @@
 
   animation-name: open-modal;
   animation-duration: 0.6s;
-  height: 24rem;
+  /* height: 24rem; */
 }
 
-.text-area {
+/* .text-area {
   border: 1px solid orange;
   border-radius: 3px;
   color: gray;
@@ -36,7 +36,7 @@
   margin: 0 auto;
   max-width: 100%;
   min-width: 100%;
-}
+} */
 
 .date {
   border: 1px solid orange;
@@ -58,7 +58,7 @@
 
 @keyframes open-modal {
   from {height: 0rem}
-  to {height: 24rem}
+  to {height: 23.5rem}
 }
 
 button {
