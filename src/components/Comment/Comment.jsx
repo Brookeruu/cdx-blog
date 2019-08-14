@@ -14,10 +14,8 @@ const Comment = (props) => {
   return (
  <div>
    <CardWrapper comment>
-   <div style={{display: 'flex'}}> 
-     <CardHeading comment>{name}</CardHeading>
-     <CardSubheading>{date}</CardSubheading>
-     </div>
+     <CardHeading style={{textTransform: 'capitalize'}}comment>{name}</CardHeading>
+     <CardSubheading comment>{date}</CardSubheading>
      <CardBody comment>{comment}</CardBody>
    </CardWrapper>
  </div>

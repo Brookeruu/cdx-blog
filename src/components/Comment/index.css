@@ -1,0 +1,13 @@
+.show-comments {
+  color: gray;
+  cursor: pointer;
+  font-family: 'Pompiere', cursive;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  text-transform: uppercase;
+}
+
+  .show-comments:hover {
+    color: 	#696969;
+    font-weight: bold;
+  }

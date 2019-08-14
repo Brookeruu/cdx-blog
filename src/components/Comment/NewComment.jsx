@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import Button from '../Button.jsx';
 import Comment from './Comment.jsx';
 import firebase from '../Firebase/firebaseConfig.js';
 import Input from '../Input.jsx';
-import moment from 'moment';
 import TextArea from '../TextArea.jsx';
+import './index.css';
 
 const NewComment = (props) => {
   const {
@@ -13,12 +14,13 @@ const NewComment = (props) => {
     ...rest
   } = props;
 
-  const [commentList, setCommentList] = useState({});
-  const [showTextArea, setShowTextArea] = useState(true);
-  const [name, setName] = useState('');
   const [comment, setComment] = useState('');
+  const [commentList, setCommentList] = useState({});
+  const [name, setName] = useState('');
+  const [showComments, setShowComments] = useState(false);
+  const [showTextArea, setShowTextArea] = useState(false);
   const [date, setDate] = useState(() => {
-  const newDate = moment(new Date()).format('LL');
+    const newDate = moment(new Date()).format('LL');
     return newDate;
   });
 
@@ -43,9 +45,14 @@ const NewComment = (props) => {
     setComment(e.target.value);
   };
 
+  const handleShowComments = (e) => {
+    e.preventDefault();
+    setShowComments(!showComments);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const commentRef = firebase.database().ref(`blog/${id}/comments`)
+    const commentRef = firebase.database().ref(`blog/${id}/comments`);
     const newComment = {
       date,
       name,
@@ -59,11 +66,11 @@ const NewComment = (props) => {
 
   useEffect(() => {
     getData();
-    return console.log("unmout comments")
+    return console.log('unmout comments');
   }, []);
 
   const commentText = (
-    <TextArea 
+    <TextArea
       type="text"
       name="comment"
       placeholder="Comment here..."
@@ -78,16 +85,25 @@ const NewComment = (props) => {
     <Input onChange={handleName} comment placeholder="Your display name..." />
   );
 
-  console.log("COMMENT", commentList)
+  const displayComments = (
+    <p onClick={handleShowComments} className="show-comments">{showComments ? 'Hide Comments' : 'Display Comments'}</p>
+  );
+
+  console.log('COMMENT', commentList);
   return (
     <div>
-    {
-         Object.keys(commentList).map(index => <Comment comment={commentList[index].comment} name={commentList[index].name} date={commentList[index].date}/>)
-    }
-      <Comment commentList={commentList} />
+    { commentList !== {} ? displayComments : null }
+      { showComments
+        ? Object.keys(commentList).map(index => <Comment
+          comment={commentList[index].comment}
+          name={commentList[index].name}
+          date={commentList[index].date}
+          key={index} />)
+        : null
+      }
       <Button comment onClick={toggleShowTextArea} edit>Leave a comment</Button>
       <div>
-        { showTextArea ? commentName: null }
+        { showTextArea ? commentName : null }
         { showTextArea ? commentText : null }
       </div>
         { showTextArea ? <Button comment type="submit" onClick={handleSubmit}>Submit</Button> : null }
