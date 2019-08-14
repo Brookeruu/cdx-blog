@@ -7,6 +7,13 @@ import Input from '../Input.jsx';
 import TextArea from '../TextArea.jsx';
 import './index.css';
 
+import Botanic10 from '../../../public/images/botanic10.png';
+import Botanic11 from '../../../public/images/botanic11.png';
+import Botanic12 from '../../../public/images/botanic12.png';
+import Botanic13 from '../../../public/images/botanic13.png';
+import Botanic14 from '../../../public/images/botanic14.png';
+import Botanic15 from '../../../public/images/botanic15.png';
+
 const NewComment = (props) => {
   const {
     children,

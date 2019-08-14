@@ -4,10 +4,16 @@
   font-family: 'Pompiere', cursive;
   margin-left: 2rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   text-transform: uppercase;
 }
 
   .show-comments:hover {
     color: 	#696969;
     font-weight: bold;
+  }
+
+  .botanic-icon {
+    margin-right: 0.5rem;
+    max-height: 1.75rem;
   }
