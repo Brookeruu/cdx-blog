@@ -30,6 +30,7 @@ const OAuth2 = (props) => {
         adminContext.setAdminLogIn();
       }
     });
+    return console.log("unmounting...");
   }, []);
 
   const handleSignIn = () => {

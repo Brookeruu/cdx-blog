@@ -38,6 +38,15 @@ export const Button = styled.button`
       color: black;
     }
   `}
+
+  ${props => props.comment && css `
+    border: 1px solid rgb(46,139,87);
+    margin-left: 2rem;
+    margin-top: 2rem;
+    :hover {
+       background-color: rgba(6,139,87,0.4);
+    }
+  `}
   
 `;
 

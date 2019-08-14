@@ -23,7 +23,7 @@ const Blog = (props) => {
   return (
     <div>
       {
-        Object.keys(list).map(index => <Card 
+        Object.keys(list).map(index => <Card
           title={list[index].title}
           body={list[index].body}
           date={list[index].date}

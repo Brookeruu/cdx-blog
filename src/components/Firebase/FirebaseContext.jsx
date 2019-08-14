@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FirebaseContext = React.createContext({
-  admin: false,
+  // admin: bool,
   setAdminLogIn: () => {},
   setAdminLogOut: () => {},
 });
