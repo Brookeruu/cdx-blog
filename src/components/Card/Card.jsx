@@ -12,6 +12,7 @@ export const CardWrapper = styled.div`
 
   ${props => props.comment && css`
     box-shadow: none;
+    display: grid;
     height: fit-content;
     margin-bottom: 0px;
     margin-top: -1rem;
