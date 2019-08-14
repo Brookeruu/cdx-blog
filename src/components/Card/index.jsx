@@ -7,6 +7,7 @@ import {
   CardBody,
   CardSubheading,
 } from './Card.jsx';
+import NewComment from '../Comment/NewComment.jsx';
 import Delete from '../Update/Delete.jsx';
 import Edit from '../Update/Edit.jsx';
 import FirebaseContext from '../Firebase/FirebaseContext.jsx';
@@ -26,6 +27,7 @@ function Card(props) {
         {loggedIn ? <Edit body={props.body} date={props.date} id={props.id} title={props.title} />
           : null}
         {loggedIn ? <Delete id={props.id}/> : null}
+        <NewComment id={props.id} />
       </CardWrapper>
     </div>
   );
