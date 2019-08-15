@@ -8,7 +8,7 @@ function Typewriter() {
   const [typingSpeed, setTypingSpeed] = useState(130);
 
   useInterval(() => {
-    const dataText = ['  Hi, I\'m Brooke. This is my blog.'];
+    const dataText = ['  Hi, I\'m Brooke. Welcome to my blog.'];
     const i = loopNum % dataText.length;
     const fullText = dataText[i];
     setText(isDeleting ? fullText.substring(0, text.length - 1)
