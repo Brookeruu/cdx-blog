@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import blogImage from '../../../public/images/pineapple-resize.png';
+import blogImage from '../../../public/images/pineapple-laptop400.png';
 import FirebaseContext from '../Firebase/FirebaseContext.jsx';
 import githubIcon from '../../../public/images/github-icon.png';
 import linkedinIcon from '../../../public/images/linkedin-icon.png';
@@ -12,24 +12,28 @@ import './index.css';
 
 const GlobalHeader = () => {
   const [showModal, setShowModal] = useState(false);
-  const [scroll, setScroll] = useState(false);
   const context = useContext(FirebaseContext);
   const loggedIn = context.admin;
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', () => {
-  //     const isTop = window.scrollY < 500;
-  //     console.log(scrollY)
-  //     if (isTop !== true) {
-  //       setScroll(true);
-  //     } else {
-  //       setScroll(false);
-  //     }
-  //   });
-  //   return () => {
-  //     window.removeEventListener('scroll');
-  //   };
-  // }, []);
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      const sticky = navbar.offsetTop;
+      const image = document.getElementById('image');
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add('sticky');
+        image.classList.add('scrolled');
+      }
+      if (window.scrollY <= (image.offsetHeight - navbar.offsetHeight)) {
+        navbar.classList.remove('sticky');
+        image.classList.remove('scrolled');
+
+      }
+    });
+    return () => {
+      window.removeEventListener('scroll');
+    };
+  }, []);
 
   const isModal = () => {
     setShowModal(true);
@@ -57,12 +61,13 @@ const GlobalHeader = () => {
   return (
     <div>
         <img
+          id='image'
           alt={'laptop'}
           className="image"
           src={blogImage}
         ></img>
 
-        <div className='global-header'>
+        <div className='global-header' id='navbar'>
          <div className="typewriter">
            <Typewriter />
         </div>
