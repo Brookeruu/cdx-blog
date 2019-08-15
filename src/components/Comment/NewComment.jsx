@@ -72,7 +72,6 @@ const NewComment = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // handleSetBotanicIcon();
     const commentRef = firebase.database().ref(`blog/${id}/comments`);
     const newComment = {
       date,
@@ -84,7 +83,6 @@ const NewComment = (props) => {
     setShowTextArea(false);
     setName('');
     setComment('');
-    // setBotanic(null);
   };
 
   useEffect(() => {
@@ -97,7 +95,6 @@ const NewComment = (props) => {
     const random = Math.floor(Math.random() * botanicArray.length);
     const selectBotanic = botanicArray[random];
     handleSetBotanicIcon(selectBotanic);
-   
   });
 
   const commentText = (
@@ -123,15 +120,22 @@ const NewComment = (props) => {
   return (
     <div>
     { commentList !== {} ? displayComments : null }
-      { showComments
-        ? Object.keys(commentList).map(index => <Comment
-          botanic={commentList[index].botanic}
-          comment={commentList[index].comment}
-          name={commentList[index].name}
-          date={commentList[index].date}
-          key={index} />)
-        : null
-      }
+      <div className="botanic-small-toggle">
+        {
+          Object.keys(commentList).map(index => <img src={commentList[index].botanic} className={showComments ? 'hidden' : 'botanic-small'} key={index}></img>)
+        }
+    </div>
+      <div >
+        { showComments
+          ? Object.keys(commentList).map(index => <Comment
+            botanic={commentList[index].botanic}
+            comment={commentList[index].comment}
+            name={commentList[index].name}
+            date={commentList[index].date}
+            key={index} />)
+          : null
+        }
+      </div>
       <Button comment onClick={toggleShowTextArea} edit>Leave a comment</Button>
       <div>
         { showTextArea ? commentName : null }
