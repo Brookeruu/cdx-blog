@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import array from './components/BotanicArray.jsx';
+import Button from './components/Button.jsx';
+import './App.css';
 
-class Error extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasError: false,
-    };
-  }
+export const Error404 = () => {
+  const [botanic, setBotanic] = useState(() => {
+    const BotanicArray = array;
+    const random = Math.floor(Math.random() * BotanicArray.length);
+    return BotanicArray[random];
+  });
 
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div>Something went wrong....</div>
-      );
-    }
-    return (
-      <div><p>this.props.children</p></div>
-    );
-  }
-}
+  const handleReturnHome = (e) => {
+    console.log("home")
+    return <Route path='/' />;
+  };
 
-export default Error;
+  return (
+    <div className='error'>
+        <div style={{display: 'block'}}>Uh oh. Something went wrong.
+          <Link to='/'>
+            <Button className='error-button'>Return to Blog</Button>
+          </Link>
+        </div>
+      <img src={botanic} className='error-image'></img>
+    </div>
+  );
+};
+
+export default Error404;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Blog from './components/Blog/Blog.jsx';
-import Error from './Error.jsx';
+import Error404 from './Error.jsx';
 import firebase from './components/Firebase/firebaseConfig.js';
 import { FirebaseProvider } from './components/Firebase/FirebaseContext.jsx';
 import GlobalHeader from './components/Global/GlobalHeader.jsx';
@@ -42,7 +42,7 @@ const App = () => {
           <Route exact path='/' render={() => <Blog />} />
           <Route path='/admin' render={() => <OAuth />} />
           <Route path='/portfolio' render={() => <Portfolio />} />
-          <Route path='/error404' render={() => <Error404 />} />
+          <Route path='*' render={() => <Error404 />} />
         </Switch>
       </div>
     </FirebaseProvider>

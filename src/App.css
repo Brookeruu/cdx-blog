@@ -6,3 +6,25 @@ margin: 0 auto !important;
 max-width: 1080px;
 width: fit-content;
 } 
+
+.error {
+  align-items: center;
+  color: rgb(178,48,0);
+  display: flex; 
+  font-family: 'Pompiere', cursive;
+  font-size: 3rem;
+  justify-content: center;
+  padding: 3rem;
+  text-transform: uppercase;
+}
+
+.error-image {
+  margin: 2rem;
+  max-height: 15rem;
+}
+
+.error-button {
+  justify-content: center;
+  display: grid;
+  margin: 1rem auto;
+}
