@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import blogIcon from '../../../public/images/blog.png';
 import blogImage from '../../../public/images/pineapple-laptop400.png';
+import briefcaseIcon from '../../../public/images/briefcase.png';
 import FirebaseContext from '../Firebase/FirebaseContext.jsx';
 import githubIcon from '../../../public/images/github-icon.png';
 import linkedinIcon from '../../../public/images/linkedin-icon.png';
@@ -74,11 +77,19 @@ const GlobalHeader = () => {
           <div className="links">
             {loggedIn ? displayPencil : null}
             {loggedIn ? displayFirebase : null}
+
+            <Link to='/'>
+              <img src={blogIcon} className='icons'></img>
+            </Link>
+
+            <Link to='/portfolio'>
+              <img src={briefcaseIcon} className='icons'></img>
+            </Link>
+
             <img
               className="icons"
               src={paperPlaneIcon} alt="email icon"
             ></img>
-
             <a href="https://www.linkedin.com/in/perry-brooke/" target="_blank">
               <img
               src={linkedinIcon} alt="linkedin"
