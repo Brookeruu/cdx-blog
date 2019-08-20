@@ -6,7 +6,7 @@ import { FirebaseProvider } from './components/Firebase/FirebaseContext.jsx';
 import GlobalHeader from './components/Global/GlobalHeader.jsx';
 import Helmet from 'react-helmet';
 import OAuth from './components/OAuth/OAuth.jsx';
-import Portfolio from './components/Portfolio/Portfolio.jsx';
+import Portfolio from './components/Portfolio/index.jsx';
 import PropTypes from 'prop-types';
 import { Switch, Route, withRoute } from 'react-router-dom';
 import './App.css';
