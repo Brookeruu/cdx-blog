@@ -70,10 +70,10 @@ const GlobalHeader = () => {
           src={blogImage}
         ></img>
 
-        <div className='global-header' id='navbar'>
-         <div className="typewriter">
-           <Typewriter />
-        </div>
+        <div className='global-header' id='navbar' style={{zIndex: '10'}}>
+          <div className="typewriter">
+            <Typewriter />
+          </div>
           <div className="links">
             {loggedIn ? displayPencil : null}
             {loggedIn ? displayFirebase : null}
