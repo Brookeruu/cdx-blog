@@ -21,6 +21,10 @@ export const Projects = (props) => {
         <h3>{props.title}</h3>
         <h5>{props.techs}</h5>
         <h5>{props.description}</h5>
+        <a className='project-link' href={props.github} target="blank">Github</a><br></br>
+        {
+          props.deployed ? <a className='project-link' href={props.deployed} target="blank">Live Site</a> : null
+        }
       </div>
     </div>
   );

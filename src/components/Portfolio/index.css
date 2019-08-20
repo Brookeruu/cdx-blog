@@ -18,12 +18,11 @@
 
 .about-text {
   grid-column: 2;
-  /* margin-top: 2rem; */
 }
 
 .about-me-text {
   padding: 3rem;
-  padding-top: 2rem;
+	padding-top: 0;
 }
 
 .timeline-indicator {
