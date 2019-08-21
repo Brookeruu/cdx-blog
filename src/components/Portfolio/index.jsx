@@ -34,14 +34,14 @@ export const Portfolio = () => {
     {
       title: 'Project Minotaur',
       techs: 'React',
-      description: 'Internship project - custom CMS using React.',
+      description: 'Software Engineering Internship at Connective DX - contribute to custom built CMS.',
       image: projectMinotaur,
       github: 'https://github.com/CSKingMartin/project-minotaur',
     },
     {
-      title: 'My Blog',
+      title: 'Blog & Portfolio',
       techs: 'React, Firebase, CICD w/ Azure DevOps',
-      description: 'My blog and portfolio. You\re alreaady here!',
+      description: 'My blog and portfolio. You\'re alreaady here!',
       image: blogImage,
       github: 'https://github.com/Brookeruu/cdx-blog',
       deployed: 'https://my-blog-677b8.firebaseapp.com/#/',

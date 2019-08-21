@@ -34,7 +34,9 @@ const GlobalHeader = () => {
       }
     });
     return () => {
-      window.removeEventListener('scroll');
+      window.removeEventListener('scroll', () => {
+        console.log('event listener removed!');
+      });
     };
   }, []);
 

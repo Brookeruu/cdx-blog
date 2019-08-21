@@ -6,7 +6,7 @@
   display: flex;
   font-family: 'Pompiere', cursive;
   font-size: 1.5rem;
-  height: 5rem;
+  height: 4rem;
   margin: auto;
   padding-right: 1rem;
   padding-left: 1rem;
@@ -48,7 +48,7 @@
 
 .image {
   height: auto;
-  margin-bottom: -5.25rem;
+  margin-bottom: -4.2rem;
   max-width: 1080px;
   transition: 0.25s;
   width: inherit;

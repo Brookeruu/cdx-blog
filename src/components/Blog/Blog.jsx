@@ -13,11 +13,16 @@ const Blog = (props) => {
     ref.on('value', (snap) => {
       const newList = Object.assign({}, snap.val());
       setList(newList);
+    }, (error) => {
+      // eslint-disable-next-line no-console
+      console.log(error);
     });
   };
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line no-console
+    console.log('list: ', list);
   }, []);
 
   return (
